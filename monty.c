@@ -61,9 +61,13 @@ int main(int ac, char **av)
 			}
 			operations->f(&cmd_line->stack_head, atoi(cmd_line->arg));
 		}
+		else if (strcmp(cmd_line->opcode, "pall") == 0)
+		{
+			pall(&cmd_line->stack_head, cmd_line->linenumber);
+		}
 		else if (strcmp(cmd_line->opcode, "pint") == 0)
 		{
-			pint(&cmd_line->stack_head, atoi(cmd_line->arg));
+			pint(&cmd_line->stack_head, cmd_line->linenumber);
 		}
 
 		i += 1;
