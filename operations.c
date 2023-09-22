@@ -1,11 +1,4 @@
 #include "monty.h"
-cmd_line_t *cmd_line;
-int j = 0,  op_count = 2;
-
-instruction_t operations[2] = {
-		{"push", push},
-		{"pall", pall}
-	};
 
 /**
  * push - pushes an element to the stack
@@ -80,22 +73,4 @@ void pint(stack_t **stack, unsigned int n)
 	printf("%d\n", (*stack)->n);
 	exit(EXIT_SUCCESS);
 }
-/**
- * executor - functiont to execute code
-*/
-void executor(void)
-{
-	while (j < op_count)
-	{
-		if (strcmp(cmd_line->opcode, "push") == 0)
-		{
-			if (cmd_line->arg == NULL || is_alphas(cmd_line->arg) == 1)
-			{
-				fprintf(stderr, "L1: unknown instruction %s", cmd_line->opcode);
-				break;
-			}
-			operations->f(&cmd_line->stack_head, atoi(cmd_line->arg));
-		}
-		j += 1;
-	}
-}
+

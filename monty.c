@@ -6,21 +6,15 @@ int main(int ac, char **av);
  * @av: array of arguments
  * Return: 0 if success 1 otherwise
 */
+
 int main(int ac, char **av)
 {
-	cmd_line_t *cmd_line;
 	char *lineptr = NULL;
-	char *lines[200] = {NULL};
+	char *lines[20000] = {NULL};
 	size_t n = 0;
 	unsigned int i = 0;
-	unsigned int x = 0;
 
 	FILE *file_ptr;
-
-	instruction_t operations[1] = {
-		{"push", push},
-
-	};
 
 	/*stack_t *stack_h = NULL;*/
 
@@ -31,6 +25,11 @@ int main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	file_ptr = fopen(av[1], "r");
+	if (file_ptr == NULL)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
+		exit(EXIT_FAILURE);
+	}
 	cmd_line = malloc(sizeof(cmd_line_t));
 	if (cmd_line == NULL)
 	{
@@ -40,9 +39,9 @@ int main(int ac, char **av)
 		cmd_line->linenumber = 0;
 		cmd_line->stack_head = NULL;
 		free(cmd_line);
-
 		return (EXIT_FAILURE);
 	}
+
 	while (getline(&lineptr, &n, file_ptr) != -1)
 	{
 		lines[i] = strdup(lineptr);
@@ -51,24 +50,7 @@ int main(int ac, char **av)
 		cmd_line->linenumber = i + 1;
 		/*printf("%s--- %s\n",cmd_line->opcode,cmd_line->arg);*/
 		/* performing operations*/
-		if (strcmp(cmd_line->opcode, "push") == 0)
-		{
-			if (cmd_line->arg == NULL || is_alphas(cmd_line->arg) == 1)
-			{
-				x = cmd_line->linenumber;
-				fprintf(stderr, "L%u: unknown instruction %s", x, cmd_line->opcode);
-				break;
-			}
-			operations->f(&cmd_line->stack_head, atoi(cmd_line->arg));
-		}
-		else if (strcmp(cmd_line->opcode, "pall") == 0)
-		{
-			pall(&cmd_line->stack_head, cmd_line->linenumber);
-		}
-		else if (strcmp(cmd_line->opcode, "pint") == 0)
-		{
-			pint(&cmd_line->stack_head, cmd_line->linenumber);
-		}
+		executor();
 
 		i += 1;
 		free(lines[i]);
