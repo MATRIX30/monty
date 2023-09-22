@@ -47,6 +47,7 @@ void push(stack_t **stack_h, unsigned int n)
 /**
  * pall - prints all the values onm the top of the stack
  * @stack: head of the stack
+ * @n: line number
  * Return: exit with status code
 */
 void pall(stack_t **stack, unsigned int n)

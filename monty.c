@@ -13,6 +13,7 @@ int main(int ac, char **av)
 	char *lines[200] = {NULL};
 	size_t n = 0;
 	unsigned int i = 0;
+	unsigned int x = 0;
 
 	FILE *file_ptr;
 
@@ -53,7 +54,8 @@ int main(int ac, char **av)
 		{
 			if (cmd_line->arg == NULL || is_alphas(cmd_line->arg) == 1)
 			{
-				fprintf(stderr, "L1: unknown instruction %s", cmd_line->opcode);
+				x = cmd_line->linenumber;
+				fprintf(stderr, "L%u: unknown instruction %s", x, cmd_line->opcode);
 				break;
 			}
 			operations->f(&cmd_line->stack_head, atoi(cmd_line->arg));
