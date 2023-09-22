@@ -62,6 +62,8 @@ extern cmd_line_t *cmd_line;
 /*Functions*/
 void push(stack_t **stack, unsigned int n);
 void pall(stack_t **stack, unsigned int n);
+void pint(stack_t **stack, unsigned int n);
+
 void printerr_msg(int line_number, char *msg);
 int is_spaces(char *s);
 int is_numbers(const char *s);

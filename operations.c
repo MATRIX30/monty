@@ -65,6 +65,22 @@ void pall(stack_t **stack, unsigned int n)
 	exit(EXIT_SUCCESS);
 }
 /**
+ * pint - prints element at the top of stack
+ * @stack: head of the stack
+ * @n: line number
+ * Return: exit with status code
+*/
+void pint(stack_t **stack, unsigned int n)
+{
+	if (stack == NULL || *stack == NULL)
+	{
+		fprintf(stderr, "L%u: unknown instruction %s", n, cmd_line->opcode);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
+	exit(EXIT_SUCCESS);
+}
+/**
  * executor - functiont to execute code
 */
 void executor(void)

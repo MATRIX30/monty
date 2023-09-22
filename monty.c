@@ -18,7 +18,8 @@ int main(int ac, char **av)
 	FILE *file_ptr;
 
 	instruction_t operations[1] = {
-		{"push", push}
+		{"push", push},
+
 	};
 
 	/*stack_t *stack_h = NULL;*/
@@ -59,6 +60,10 @@ int main(int ac, char **av)
 				break;
 			}
 			operations->f(&cmd_line->stack_head, atoi(cmd_line->arg));
+		}
+		else if (strcmp(cmd_line->opcode, "pint") == 0)
+		{
+			pint(&cmd_line->stack_head, atoi(cmd_line->arg));
 		}
 
 		i += 1;
