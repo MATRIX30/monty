@@ -1,0 +1,28 @@
+	/*
+	instruction_t operations[4] = {
+		{"push", push},
+		{"pall", pall},
+		{"pint", pint},
+		{NULL, NULL}
+	};
+	 while (ptr->opcode)
+	{
+		printf("%s ",ptr->opcode);
+		if (strcmp(cmd_line->opcode, ptr->opcode) == 0)
+		{
+			if (cmd_line->stack_head == NULL)
+			{
+				fprintf(stderr, "L%u: can't pint, stack empty \n", x);
+				free(cmd_line->opcode);
+				free(cmd_line->arg);
+				exit(EXIT_FAILURE);
+			}
+			ptr->f(&cmd_line->stack_head,cmd_line->linenumber);
+		}
+		ptr += 1;
+	}
+		fprintf(stderr, "L%u:unknown instruction %s\n", x, cmd_line->opcode);
+		free(cmd_line->opcode);
+		free(cmd_line->arg);
+		exit(EXIT_FAILURE);
+	*/

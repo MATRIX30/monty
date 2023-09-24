@@ -1,26 +1,4 @@
 #include "monty.h"
-
-/**
- * printerr_msg - function to print error messages
- * @line_number: line number where error occured
- * @msg: the error message to print to stderr
-*/
-
-void printerr_msg(int line_number, char *msg)
-{
-	int msg_len = strlen(msg);
-
-	if (line_number == -1)
-	{
-		write(2, &msg, msg_len);
-	}
-	else
-	{
-		fprintf(stderr, "hd");
-	}
-
-}
-
 /**
  * is_spaces - function to verify if a string is made up of spaces only
  * @s: string to verfiy
@@ -68,7 +46,7 @@ int is_numbers(const char *s)
 
 int is_alphas(const char *s)
 {
-	if ( s== NULL)
+	if (s == NULL)
 	{
 		return (0);
 	}
@@ -97,18 +75,22 @@ void free_cmds(char **lines)
 		i += 1;
 	}
 }
-
+/**
+ * free_stack - a function to free the stack
+ * @stack_head: the head of the pionter
+*/
 void free_stack(stack_t **stack_head)
 {
 	stack_t *tmp = NULL;
+
 	if (stack_head == NULL || *stack_head == NULL)
 	{
-		return ;
+		return;
 	}
 	while (*stack_head)
 	{
 		tmp = *stack_head;
-		*stack_head = *stack_head++;
+		*stack_head = (*stack_head)->next;
 		free(tmp);
 	}
 }

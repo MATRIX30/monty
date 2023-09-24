@@ -45,6 +45,17 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+
+/**
+ * struct cmd_line_s - opcode and its function
+ * @opcode: the opcode
+ * @arg: function to hanlde the opcode
+ * @linenumber: number of the line where error occured
+ * @stack_head: pointer to the head
+ *
+ * Description: opcode and its function
+ * for stack, queues, LIFO, FIFO
+*/
 typedef struct cmd_line_s
 {
 	char *opcode;
@@ -67,6 +78,6 @@ int is_spaces(char *s);
 int is_numbers(const char *s);
 int is_alphas(const char *s);
 void free_cmds(char **lines);
-void free_stack( stack_t **stack_head);
+void free_stack(stack_t **stack_head);
 void executor(void);
 #endif

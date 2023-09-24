@@ -43,16 +43,16 @@ int main(int ac, char **av)
 
 	while (getline(&lineptr, &n, file_ptr) != -1)
 	{
-		
+
 		cmd_line->opcode = strtok(lineptr, " \n");
 		cmd_line->arg = strtok(NULL, " \n");
 		cmd_line->linenumber = i + 1;
 		/*printf("%s--- %s\n",cmd_line->opcode,cmd_line->arg);*/
-		
+
 		/* performing operations*/
-		
+
 		executor();
-		
+
 		i += 1;
 		free(lineptr);
 		lineptr = NULL;
