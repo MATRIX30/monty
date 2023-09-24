@@ -10,7 +10,7 @@ int main(int ac, char **av);
 int main(int ac, char **av)
 {
 	char *lineptr = NULL;
-	char *lines[20000] = {NULL};
+	/*char *lines[20000] = {NULL};*/
 	size_t n = 0;
 	unsigned int i = 0;
 
@@ -34,31 +34,34 @@ int main(int ac, char **av)
 	if (cmd_line == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		cmd_line->opcode = NULL;
-		cmd_line->arg = NULL;
-		cmd_line->linenumber = 0;
-		cmd_line->stack_head = NULL;
-		free(cmd_line);
 		return (EXIT_FAILURE);
 	}
+	cmd_line->opcode = NULL;
+	cmd_line->arg = NULL;
+	cmd_line->linenumber = 0;
+	cmd_line->stack_head = NULL;
 
 	while (getline(&lineptr, &n, file_ptr) != -1)
 	{
-		lines[i] = strdup(lineptr);
-		cmd_line->opcode = strtok(lines[i], " ");
-		cmd_line->arg = strtok(NULL, " ");
+		
+		cmd_line->opcode = strtok(lineptr, " \n");
+		cmd_line->arg = strtok(NULL, " \n");
 		cmd_line->linenumber = i + 1;
 		/*printf("%s--- %s\n",cmd_line->opcode,cmd_line->arg);*/
+		
 		/* performing operations*/
+		
 		executor();
-
+		
 		i += 1;
-		free(lines[i]);
+		free(lineptr);
+		lineptr = NULL;
+		n = 0;
 	}
-	lines[i] = NULL;
+
+
 	fclose(file_ptr);
-	free(lineptr);
 	free(cmd_line);
-	free_cmds(lines);
+	free_stack(&(cmd_line->stack_head));
 	return (0);
 }

@@ -68,6 +68,10 @@ int is_numbers(const char *s)
 
 int is_alphas(const char *s)
 {
+	if ( s== NULL)
+	{
+		return (0);
+	}
 	while (*s)
 	{
 		if (!isalpha(*s))
@@ -91,5 +95,20 @@ void free_cmds(char **lines)
 	{
 		free(lines[i]);
 		i += 1;
+	}
+}
+
+void free_stack(stack_t **stack_head)
+{
+	stack_t *tmp = NULL;
+	if (stack_head == NULL || *stack_head == NULL)
+	{
+		return ;
+	}
+	while (*stack_head)
+	{
+		tmp = *stack_head;
+		*stack_head = *stack_head++;
+		free(tmp);
 	}
 }

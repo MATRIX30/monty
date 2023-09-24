@@ -9,8 +9,6 @@
 #include <string.h>
 #include <ctype.h>
 
-
-
 /*Macros*/
 #define READ_SIZE 1024
 #define BUFFER_SIZE 10000
@@ -69,5 +67,6 @@ int is_spaces(char *s);
 int is_numbers(const char *s);
 int is_alphas(const char *s);
 void free_cmds(char **lines);
+void free_stack( stack_t **stack_head);
 void executor(void);
 #endif

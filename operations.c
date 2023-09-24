@@ -6,18 +6,17 @@
  * @n: integer element to push to stack
  * Return EXIT_FAILURE else otherwise
 */
-void push(stack_t **stack_h, unsigned int n);
+
 void push(stack_t **stack_h, unsigned int n)
 {
-	stack_t *new_node;
-
+	stack_t *new_node = NULL;
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed");
+		free(new_node);
 		exit(EXIT_FAILURE);
 	}
-
 	new_node->n = n;
 	new_node->next = NULL;
 	new_node->prev = NULL;
@@ -34,7 +33,6 @@ void push(stack_t **stack_h, unsigned int n)
 		new_node->prev = *stack_h;
 		*stack_h = new_node;
 	}
-
 }
 
 /**
@@ -45,15 +43,17 @@ void push(stack_t **stack_h, unsigned int n)
 */
 void pall(stack_t **stack, unsigned int n)
 {
+	stack_t *tmp  = *stack;
+
 	if (stack == NULL || *stack == NULL)
 	{
 		fprintf(stderr, "L%u: unknown instruction %s", n, cmd_line->opcode);
 		exit(EXIT_FAILURE);
 	}
-	while (*stack)
+	while (tmp)
 	{
-		printf("%d\n", (*stack)->n);
-		*stack = (*stack)->next;
+		printf("%d\n", tmp->n);
+		tmp = tmp->next;
 	}
 	exit(EXIT_SUCCESS);
 }
