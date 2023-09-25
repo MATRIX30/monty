@@ -17,7 +17,7 @@ void executor(void)
 	{
 		if (cmd_line->arg == NULL || is_alphas(cmd_line->arg) == 1)
 		{
-			fprintf(stderr, "L%u: unknown instruction %s\n", x, cmd_line->opcode);
+			fprintf(stderr, "L%u: usage: push integer\n", x);
 			exit(EXIT_FAILURE);
 		}
 		operations->f(&cmd_line->stack_head, atoi(cmd_line->arg));

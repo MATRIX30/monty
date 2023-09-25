@@ -22,7 +22,7 @@ int main(int ac, char **av)
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		return (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	file_ptr = fopen(av[1], "r");
 	if (file_ptr == NULL)
