@@ -48,7 +48,10 @@ int main(int ac, char **av)
 		cmd_line->arg = strtok(NULL, " \n");
 		cmd_line->linenumber = i + 1;
 		/*printf("%s--- %s\n",cmd_line->opcode,cmd_line->arg);*/
-		
+		if (cmd_line->opcode == NULL)
+		{
+			continue;
+		}
 
 		/* performing operations*/
 
