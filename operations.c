@@ -56,7 +56,6 @@ void pall(stack_t **stack, unsigned int n)
 		printf("%d\n", tmp->n);
 		tmp = tmp->next;
 	}
-	exit(EXIT_SUCCESS);
 }
 /**
  * pint - prints element at the top of stack
