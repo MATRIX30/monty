@@ -1,2 +1,4 @@
-push 
-pall
+ 
+ push 5  
+ 
+ pall

@@ -12,7 +12,7 @@ void executor(void);
 void executor(void)
 {
 	int x = cmd_line->linenumber;
-
+	
 	if (strcmp(cmd_line->opcode, "push") == 0)
 	{
 		if (cmd_line->arg == NULL || is_alphas(cmd_line->arg) == 1)
@@ -37,7 +37,7 @@ void executor(void)
 	}
 	else
 	{
-		fprintf(stderr, "L%u:unknown instruction %s\n", x, cmd_line->opcode);
+		fprintf(stderr, "L%u: unknown instruction %s\n", x, cmd_line->opcode);
 		free(cmd_line->opcode);
 		free(cmd_line->arg);
 		exit(EXIT_FAILURE);
